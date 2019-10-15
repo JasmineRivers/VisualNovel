@@ -2,41 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class TextSystem : MonoBehaviour
 {
     public static TextSystem instance;
+    SpeechText speechText;
     DialogueSystem dialogue;
+
     float waitTime = 0.0f;
-    float maxWaitTime = 0.7f;
-   [HideInInspector] public bool userInput = false;
+
+    public float WaitBeforeSkip;
+    public int textSize;
+    public float lineSpacing;
+
+    public bool userInput = false;
+
+    bool GameStart = true;
+
+    [Range(0f, 1f)] public float wait;
+
     //public AudioSource blink;
     // Start is called before the first frame update
 
     void Awake()
     {
-        instance = this;   
+        instance = this;
     }
     void Start()
     {
         dialogue = DialogueSystem.instance;
+        speechText = GetComponent<SpeechText>();
+
+        dialogue.waitfor = wait;
         //blink = GetComponent<AudioSource>();
     }
 
-
+    [TextArea]
     public string[] speakerText = new string[]
         {
             "Write Text in this box:AddNameHere"
         };
 
-    [HideInInspector ]public int index = 0;
+    [HideInInspector] public int index = 0;
     // Update is called once per frame
     void Update()
     {
+        gameStart();
+
         if (dialogue != null)
         {
             if (Input.GetKeyDown(KeyCode.Space) && userInput == false)
-        {
+            {
 
                 if (!dialogue.isSpeaking || dialogue.isWatingForUserInput)
                 {
@@ -51,9 +68,9 @@ public class TextSystem : MonoBehaviour
                     //index++;
                 }
 
-        }
+            }
 
-       
+
             if (index < speakerText.Length)
             {
                 stopSay(speakerText[index]);
@@ -63,16 +80,17 @@ public class TextSystem : MonoBehaviour
         Delay();
 
 
+        // ShowArrayProperty(speakerText);
+
     }
+
 
     void Say(string s)
     {
         string[] parts = s.Split(':');
         string speech = parts[0];
         string speaker = (parts.Length >= 2) ? parts[1] : "";
-
         dialogue.Say(speech, speaker);
-     
     }
 
     void stopSay(string s)
@@ -85,29 +103,45 @@ public class TextSystem : MonoBehaviour
 
     void SkipText(string speech, string speaker)
     {
-            if (Input.GetKeyDown(KeyCode.Space) && !dialogue.isWatingForUserInput)
+        if (Input.GetKeyDown(KeyCode.Space) && !dialogue.isWatingForUserInput)
+        {
+            if (userInput == true)
             {
-                 if (userInput == true)
-                  {
-                      dialogue.SkipTextScroll(speech, speaker);
-                      index++;
-                      userInput = false;
-                      waitTime = 0;
-                  }
-            
-            }      
+                dialogue.SkipTextScroll(speech, speaker);
+                index++;
+                userInput = false;
+                waitTime = 0;
+            }
+
+        }
     }
 
     void Delay()
     {
-        if (waitTime != maxWaitTime)
+        if (dialogue.isWatingForUserInput == false)
         {
-            waitTime += Time.deltaTime;
-        }
+            if (waitTime != WaitBeforeSkip)
+            {
+                waitTime += Time.deltaTime;
+            }
 
-        if (waitTime >= maxWaitTime)
+            if (waitTime >= WaitBeforeSkip)
+            {
+                userInput = true;
+            }
+        }
+        else
         {
-            userInput = true;
+            userInput = false;
+        }
+    }
+
+    void gameStart()
+    {
+        if (GameStart == true)
+        {
+            Say(speakerText[index]);
+            GameStart = false;
         }
     }
 

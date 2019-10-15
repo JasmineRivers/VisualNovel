@@ -2,15 +2,22 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 
 
 public class DialogueSystem : MonoBehaviour
 {
+
     public static DialogueSystem instance;
     TextSystem textSystem;
+
     public ELEMENTS elements;
+
+
+
     // public Text test;
+
+
 
     void Awake()
     {
@@ -26,7 +33,7 @@ public class DialogueSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkifTextIsFinished();
+        Catch();
     }
 
     public void Say(string speech, string speaker = "")
@@ -35,6 +42,13 @@ public class DialogueSystem : MonoBehaviour
         speaking = StartCoroutine(Speaking(speech, speaker));
     }
 
+    [HideInInspector] public bool isSpeaking { get { return speaking != null; } }
+    [HideInInspector] public bool isWatingForUserInput = false;
+    [HideInInspector] public float waitfor;
+
+    Coroutine speaking = null;
+
+
     public void StopSpeaking()
     {
         if (isSpeaking)
@@ -42,15 +56,9 @@ public class DialogueSystem : MonoBehaviour
             StopCoroutine(speaking);
             
         }
-        speaking = null;
-        
+        speaking = null;     
     }
 
-    public bool isSpeaking { get { return speaking != null; } }
-    public bool isWatingForUserInput = false;
-
-
-    Coroutine speaking = null;
     IEnumerator Speaking(string targetSpeech, string speaker = "")
     {
         speechPanel.SetActive(true);
@@ -58,19 +66,19 @@ public class DialogueSystem : MonoBehaviour
         speakerNameText.text = DetermineSpeaker(speaker);
         isWatingForUserInput = false;
 
-      while (speechText.text != targetSpeech)
+        while (speechText.text != targetSpeech)
         {
             speechText.text += targetSpeech[speechText.text.Length];
-            yield return new WaitForSeconds(0.1f);
-          
+            yield return new WaitForSeconds(waitfor);
+
         }
 
+        textSystem.index++;
         isWatingForUserInput = true;
         while (isWatingForUserInput)
         yield return new WaitForEndOfFrame();
-        textSystem.index++;
-        textSystem.userInput = false;
-        StopSpeaking();
+
+        StopSpeaking();    
     }
 
     public void SkipTextScroll(string targetSpeech, string speaker = "")
@@ -92,9 +100,12 @@ public class DialogueSystem : MonoBehaviour
         return retVal;
     }
 
-    void checkifTextIsFinished()
+
+
+
+    void Catch()
     {
-        if (speaking == null)
+        if (isWatingForUserInput == true)
         {
             textSystem.userInput = false;
         }
