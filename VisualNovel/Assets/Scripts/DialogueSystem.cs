@@ -117,6 +117,7 @@ public class DialogueSystem : MonoBehaviour
         public GameObject speechPanel;
         public Text speakerNameText;
         public Text speechText;
+
     }
     public GameObject speechPanel { get { return elements.speechPanel; } }
     public Text speakerNameText { get { return elements.speakerNameText; } }

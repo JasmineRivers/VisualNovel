@@ -19,6 +19,8 @@ public class SpeechText : MonoBehaviour
 
         wordSize = textSystem.textSize;
         lineSpacing = textSystem.lineSpacing;
+
+
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class SpeechText : MonoBehaviour
         text.fontSize = wordSize;
         text.lineSpacing = lineSpacing;
         text.color = Color.blue;
+        text.font = textSystem.font;
 
     }
 }

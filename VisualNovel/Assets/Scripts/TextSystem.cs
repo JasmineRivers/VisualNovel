@@ -12,11 +12,14 @@ public class TextSystem : MonoBehaviour
 
     float waitTime = 0.0f;
 
-    public float WaitBeforeSkip;
-    public int textSize;
-    public float lineSpacing;
+    [Header("Speech Text Settings")]
+  
+    public Font font;
+    [Range(0.2f, 1f)] public float WaitBeforeSkip;
+    [Range(1f, 20f)] public int textSize;
+    [Range(1f, 10f)] public float lineSpacing;
 
-    public bool userInput = false;
+    [HideInInspector]public bool userInput = false;
 
     bool GameStart = true;
 
