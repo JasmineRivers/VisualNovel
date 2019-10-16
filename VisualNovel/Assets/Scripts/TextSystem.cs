@@ -12,20 +12,33 @@ public class TextSystem : MonoBehaviour
 
     float waitTime = 0.0f;
 
-    [Header("Speech Text Settings")]
-  
+    [Header("Text Settings")]
+
     public Font font;
     [Range(0.2f, 1f)] public float WaitBeforeSkip;
     [Range(1f, 20f)] public int textSize;
     [Range(1f, 10f)] public float lineSpacing;
+    [Range(0f, 1f)] public float textSpeed;
 
-    [HideInInspector]public bool userInput = false;
+    public AudioSource textSound;
+
+    public Color textColour;
+    
+
+    [Header("Name Text Settings")]
+    public Font nameFont;
+    [Range(1f, 30f)] public int nameTextSize;
+    public Color nameTextColour;
+
+    [HideInInspector] public bool userInput = false;
 
     bool GameStart = true;
 
-    [Range(0f, 1f)] public float wait;
+ 
 
-    //public AudioSource blink;
+
+
+
     // Start is called before the first frame update
 
     void Awake()
@@ -36,13 +49,14 @@ public class TextSystem : MonoBehaviour
     {
         dialogue = DialogueSystem.instance;
         speechText = GetComponent<SpeechText>();
-
-        dialogue.waitfor = wait;
+        dialogue.waitfor = textSpeed;
         //blink = GetComponent<AudioSource>();
     }
 
-    [TextArea]
-    public string[] speakerText = new string[]
+
+    [Space(10)]
+    [TextArea(10,20)]
+    public string[] text = new string[]
         {
             "Write Text in this box:AddNameHere"
         };
@@ -60,23 +74,23 @@ public class TextSystem : MonoBehaviour
 
                 if (!dialogue.isSpeaking || dialogue.isWatingForUserInput)
                 {
-                    if (index >= speakerText.Length)
+                    if (index >= text.Length)
                     {
                         Debug.Log("Text,Done");
 
                         return;
                     }
-                    //blink.Play();
-                    Say(speakerText[index]);
+                   
+                    textSound.Play();
+                    Say(text[index]);
                     //index++;
                 }
 
             }
 
-
-            if (index < speakerText.Length)
+            if (index < text.Length)
             {
-                stopSay(speakerText[index]);
+                stopSay(text[index]);
             }
         }
 
@@ -114,6 +128,7 @@ public class TextSystem : MonoBehaviour
                 index++;
                 userInput = false;
                 waitTime = 0;
+                textSound.Play();
             }
 
         }
@@ -143,7 +158,7 @@ public class TextSystem : MonoBehaviour
     {
         if (GameStart == true)
         {
-            Say(speakerText[index]);
+            Say(text[index]);
             GameStart = false;
         }
     }

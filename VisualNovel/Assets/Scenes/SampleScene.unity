@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 115555110}
   - component: {fileID: 115555109}
   - component: {fileID: 115555108}
+  - component: {fileID: 115555111}
   m_Layer: 0
   m_Name: VisualNovel
   m_TagString: Untagged
@@ -173,18 +174,45 @@ MonoBehaviour:
   WaitBeforeSkip: 0.3
   textSize: 17
   lineSpacing: 1
+  textSpeed: 0.055
+  textSound: {fileID: 115555111}
+  textColour: {r: 0, g: 0, b: 0, a: 1}
+  nameFont: {fileID: 12800000, guid: b421d4c92737c77418fc844ddbaf2a22, type: 3}
+  nameTextSize: 30
+  nameTextColour: {r: 0, g: 0, b: 0, a: 1}
   userInput: 0
-  wait: 0.072
-  speakerText:
-  - Y(O)LO SWAG OMG LOL LMFAO Im just going to write a really long setance to see
-    if this is working proberly otherwise ill have to re check the code and change
-    it around:AddNameHere
-  - hello you are you having a wonderful day. welp i really dont care if you are
-    or not I just came over to tell you that you are so dumb and stuppid.
-  - On a early summers morning, a lone blue bird flew down from their purch upon
-    a large tree. The air was crips as the bird decended to the ground. Waiting patiently
-    for the ealry worms to.
-  - yozay fsklibgnkdhfadgf
+  text:
+  - (Again they turned me down. AGAIN! I dont understand what im doing wrong. I am
+    the most attractive most amazing person around for miles why wont they just go
+    out with me?):Witch Bitch
+  - (I know i'll give them something so grand that they will not be able to turn
+    me down again. I'll make the biggest diamond of this land so that they can add
+    it to their collection. Then, THEN they will see that I do actaully care about
+    them and not just after their money.)
+  - Two Weeks Later...:Narrator
+  - Finally gathering all these items was such a pain but now I can start my rutial.:Witch
+    Bitch
+  - Then a loud roar could be heard over head.:Narrator
+  - Oh No! They are already here. I must hurry before they land. A bit of dust, one
+    toad eye ... and done.:Witch Bitch
+  - Hello? I have come here on your request. Are you ok, did somthing happen?:???
+  - Yes yes, i'm fine just give me a second. I'll be right out with you.:Witch Bitch
+  - Slowly opening the door the witch revealed who was outside. A Dragon!:Narrator
+  - I made this for you. I know how much you like your tresure so i thought you would
+    want one that I made. Cause you know how we are partners in crime after all.:Witch
+    Bitch
+  - Whats all this for, not that im not thankful or anything just... Is this where
+    you have been for the past weeks. I thought somthing had happened to you. Scared
+    me half to death:Dragon
+  - I'm sorry I didnt tell you just. I wanted it to be a supries, I aslo wanted to
+    show how much you mean to me :Witch Bitch
+  - I.. I don't know what to say.:Dragon
+  - So will you please just give me a chance, I'm not after money, i'm not after
+    power. I just want you. I know people call me a bitch but when im around you
+    that changes :Witch Bitch
+  - A single tear rolled down the dragons cheek as they slowly walked up to the Witch
+    and kissed them.:Narrator
+  - Come, fly with me.:Dragon
   index: 0
 --- !u!4 &115555110
 Transform:
@@ -201,6 +229,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &115555111
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115555107}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f4752c3460714aa40a2a113b6bb26de8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &240801585
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +559,7 @@ GameObject:
   - component: {fileID: 1043465610}
   - component: {fileID: 1043465611}
   - component: {fileID: 1043465612}
+  - component: {fileID: 1043465613}
   m_Layer: 5
   m_Name: SpeakerTextBox
   m_TagString: Untagged
@@ -494,13 +619,61 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &1043465613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043465609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4df37bc84df0cf4aad169e6a4c36188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1158815355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1158815356}
+  m_Layer: 5
+  m_Name: Sprites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1158815356
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158815355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2064494230}
+  m_Father: {fileID: 1387957111}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1348730070
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +704,7 @@ RectTransform:
   - {fileID: 1362835180}
   - {fileID: 273445344}
   m_Father: {fileID: 1387957111}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -642,6 +815,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1158815356}
   - {fileID: 1348730071}
   m_Father: {fileID: 115555110}
   m_RootOrder: 0
@@ -803,3 +977,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d76bb5a8f60f6b4d845d509fe11a5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2064494229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064494230}
+  - component: {fileID: 2064494232}
+  - component: {fileID: 2064494231}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2064494230
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064494229}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 221.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1158815356}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 304, y: 51}
+  m_SizeDelta: {x: 324.24, y: 309.24}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2064494231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064494229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 15967b8f1aa7e8840b6962e133a25d48, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2064494232
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064494229}
+  m_CullTransparentMesh: 0
