@@ -64,7 +64,7 @@ public class TextSystem : MonoBehaviour
             "Write Text in this box:AddNameHere"
         };
 
-    public int index = 0;
+   [HideInInspector] public int index = 0;
     // Update is called once per frame
     void Update()
     {

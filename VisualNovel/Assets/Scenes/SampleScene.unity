@@ -339,9 +339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b85cd6bd5e6b94d9724df5987f781e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
+  charactersSprites:
   - characterName: Witch Bitch
     Character: {fileID: 2064494231}
+  - characterName: Dragon
+    Character: {fileID: 518101565}
 --- !u!1 &240801585
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b85cd6bd5e6b94d9724df5987f781e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters: []
+  charactersSprites: []
 --- !u!1 &273445343
 GameObject:
   m_ObjectHideFlags: 0
