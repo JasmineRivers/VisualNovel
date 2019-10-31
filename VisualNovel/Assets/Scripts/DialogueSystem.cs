@@ -13,6 +13,7 @@ public class DialogueSystem : MonoBehaviour
 
     public ELEMENTS elements;
 
+	public string speakerNameHold;
 
 
     // public Text test;
@@ -96,6 +97,8 @@ public class DialogueSystem : MonoBehaviour
         string retVal = speakerNameText.text;
         if (speakerName != speakerNameText.text && speakerName != "")
             retVal = (speakerName.ToLower().Contains("narrator")) ? "" : speakerName;
+
+		speakerNameHold = speakerName;
 
         return retVal;
     }

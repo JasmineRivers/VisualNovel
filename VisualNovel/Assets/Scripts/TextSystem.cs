@@ -30,11 +30,14 @@ public class TextSystem : MonoBehaviour
     [Range(1f, 30f)] public int nameTextSize;
     public Color nameTextColour;
 
-    [HideInInspector] public bool userInput = false;
+	[Header("Character One")]
+
+
+	[HideInInspector] public bool userInput = false;
 
     bool GameStart = true;
 
- 
+	
 
 
 
@@ -61,7 +64,7 @@ public class TextSystem : MonoBehaviour
             "Write Text in this box:AddNameHere"
         };
 
-    [HideInInspector] public int index = 0;
+    public int index = 0;
     // Update is called once per frame
     void Update()
     {
