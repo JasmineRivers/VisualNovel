@@ -131,8 +131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 115555110}
   - component: {fileID: 115555109}
-  - component: {fileID: 115555108}
   - component: {fileID: 115555112}
+  - component: {fileID: 115555108}
   - component: {fileID: 115555111}
   m_Layer: 0
   m_Name: VisualNovel
@@ -173,10 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   font: {fileID: 12800000, guid: b421d4c92737c77418fc844ddbaf2a22, type: 3}
-  WaitBeforeSkip: 0.3
-  textSize: 17
-  lineSpacing: 1
-  textSpeed: 0.055
+  WaitBeforeSkip: 0.2
+  textSize: 16
+  lineSpacing: 1.38
+  textSpeed: 0.078
   textSound: {fileID: 115555111}
   textColour: {r: 0, g: 0, b: 0, a: 1}
   nameFont: {fileID: 12800000, guid: b421d4c92737c77418fc844ddbaf2a22, type: 3}
@@ -184,37 +184,18 @@ MonoBehaviour:
   nameTextColour: {r: 0, g: 0, b: 0, a: 1}
   userInput: 0
   text:
-  - (Again they turned me down. AGAIN! I dont understand what im doing wrong. I am
-    the most attractive most amazing person around for miles why wont they just go
-    out with me?):Witch Bitch
-  - (I know i'll give them something so grand that they will not be able to turn
-    me down again. I'll make the biggest diamond of this land so that they can add
-    it to their collection. Then, THEN they will see that I do actaully care about
-    them and not just after their money.)
-  - Two Weeks Later...:Narrator
-  - Finally gathering all these items was such a pain but now I can start my rutial.:Witch
-    Bitch
-  - Then a loud roar could be heard over head.:Narrator
-  - Oh No! They are already here. I must hurry before they land. A bit of dust, one
-    toad eye ... and done.:Witch Bitch
-  - Hello? I have come here on your request. Are you ok, did somthing happen?:???
-  - Yes yes, i'm fine just give me a second. I'll be right out with you.:Witch Bitch
-  - Slowly opening the door the witch revealed who was outside. A Dragon!:Narrator
-  - I made this for you. I know how much you like your tresure so i thought you would
-    want one that I made. Cause you know how we are partners in crime after all.:Witch
-    Bitch
-  - Whats all this for, not that im not thankful or anything just... Is this where
-    you have been for the past weeks. I thought somthing had happened to you. Scared
-    me half to death:Dragon
-  - I'm sorry I didnt tell you just. I wanted it to be a supries, I aslo wanted to
-    show how much you mean to me :Witch Bitch
-  - I.. I don't know what to say.:Dragon
-  - So will you please just give me a chance, I'm not after money, i'm not after
-    power. I just want you. I know people call me a bitch but when im around you
-    that changes :Witch Bitch
-  - A single tear rolled down the dragons cheek as they slowly walked up to the Witch
-    and kissed them.:Narrator
-  - Come, fly with me.:Dragon
+  - CharacterName: Cinnabun
+    emotion: 1
+    text: hello
+  - CharacterName: Cinnabun
+    emotion: 0
+    text: fddfskjldfsdgfsdfsdgfsdgfs
+  - CharacterName: Cinnabun
+    emotion: 0
+    text: ' dgfzrntzdrmgxdfbgREtbxndrynasbrymnsy'
+  - CharacterName: Cinnabun
+    emotion: 0
+    text: ojidfsdfasljdgfasdfasdfas
   index: 0
 --- !u!4 &115555110
 Transform:
@@ -340,10 +321,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charactersSprites:
-  - characterName: Witch Bitch
-    Character: {fileID: 2064494231}
-  - characterName: Dragon
-    Character: {fileID: 518101565}
+  - characterName: Cinnabun
+    Happy: {fileID: 518101565}
+    Sad: {fileID: 2064494231}
+    Nutral: {fileID: 0}
+    Angry: {fileID: 0}
 --- !u!1 &240801585
 GameObject:
   m_ObjectHideFlags: 0

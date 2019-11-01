@@ -57,12 +57,33 @@ public class TextSystem : MonoBehaviour
     }
 
 
-    [Space(10)]
-    [TextArea(10,20)]
-    public string[] text = new string[]
+ 
+    [System.Serializable]
+    public struct Text
         {
-            "Write Text in this box:AddNameHere"
+    
+        public string CharacterName;
+
+        public Emotion emotion;
+        [System.Serializable]
+        public enum Emotion
+        {
+            Happy,
+            Sad,
+            Nutrual,
+            Angry
         };
+
+        [Space(10)]
+        [TextArea(10, 20)]
+        public string text;
+    
+
+   
+        }
+
+    public Text[] text;
+
 
    [HideInInspector] public int index = 0;
     // Update is called once per frame
@@ -85,7 +106,8 @@ public class TextSystem : MonoBehaviour
                     }
                    
                     textSound.Play();
-                    Say(text[index]);
+
+                    Say(text[index].text);
                     //index++;
                 }
 
@@ -93,7 +115,7 @@ public class TextSystem : MonoBehaviour
 
             if (index < text.Length)
             {
-                stopSay(text[index]);
+                stopSay(text[index].text);
             }
         }
 
@@ -101,7 +123,7 @@ public class TextSystem : MonoBehaviour
 
 
         // ShowArrayProperty(speakerText);
-
+        Debug.Log(text[index].emotion);
     }
 
 
@@ -161,7 +183,7 @@ public class TextSystem : MonoBehaviour
     {
         if (GameStart == true)
         {
-            Say(text[index]);
+            Say(text[index].text);
             GameStart = false;
         }
     }

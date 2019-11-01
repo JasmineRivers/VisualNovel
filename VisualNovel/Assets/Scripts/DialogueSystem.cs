@@ -40,7 +40,7 @@ public class DialogueSystem : MonoBehaviour
     public void Say(string speech, string speaker = "")
     {
         StopSpeaking();
-        speaking = StartCoroutine(Speaking(speech, speaker));
+        speaking = StartCoroutine(Speaking(speech));
     }
 
     [HideInInspector] public bool isSpeaking { get { return speaking != null; } }
@@ -60,11 +60,11 @@ public class DialogueSystem : MonoBehaviour
         speaking = null;     
     }
 
-    IEnumerator Speaking(string targetSpeech, string speaker = "")
+    IEnumerator Speaking(string targetSpeech)
     {
         speechPanel.SetActive(true);
         speechText.text = "";
-        speakerNameText.text = DetermineSpeaker(speaker);
+        speakerNameText.text = DetermineSpeaker();
         isWatingForUserInput = false;
 
         while (speechText.text != targetSpeech)
@@ -92,18 +92,12 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    string DetermineSpeaker(string speakerName)
+    string DetermineSpeaker()
     {
-        string retVal = speakerNameText.text;
-        if (speakerName != speakerNameText.text && speakerName != "")
-            retVal = (speakerName.ToLower().Contains("narrator")) ? "" : speakerName;
+       speakerNameHold = textSystem.text[textSystem.index].CharacterName;
 
-		speakerNameHold = speakerName;
-
-        return retVal;
+        return speakerNameHold;
     }
-
-
 
 
     void Catch()
