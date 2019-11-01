@@ -186,15 +186,15 @@ MonoBehaviour:
   text:
   - CharacterName: Cinnabun
     emotion: 1
-    text: hello
+    text: helloooooooooooooooooooooooo
   - CharacterName: Cinnabun
     emotion: 0
     text: fddfskjldfsdgfsdfsdgfsdgfs
-  - CharacterName: Cinnabun
+  - CharacterName: Hill
     emotion: 0
     text: ' dgfzrntzdrmgxdfbgREtbxndrynasbrymnsy'
   - CharacterName: Cinnabun
-    emotion: 0
+    emotion: 1
     text: ojidfsdfasljdgfasdfasdfas
   index: 0
 --- !u!4 &115555110
@@ -322,8 +322,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charactersSprites:
   - characterName: Cinnabun
-    Happy: {fileID: 518101565}
-    Sad: {fileID: 2064494231}
+    Happy: {fileID: 518101564}
+    Sad: {fileID: 518101564}
+    Nutral: {fileID: 0}
+    Angry: {fileID: 0}
+  - characterName: Hill
+    Happy: {fileID: 2064494229}
+    Sad: {fileID: 2064494229}
     Nutral: {fileID: 0}
     Angry: {fileID: 0}
 --- !u!1 &240801585

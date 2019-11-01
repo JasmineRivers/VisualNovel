@@ -14,10 +14,10 @@ public class FirstSprite : MonoBehaviour
     public struct Characters
     {
         public string characterName;
-        public Image Happy;
-        public Image Sad;
-        public Image Nutral;
-        public Image Angry;
+        public GameObject Happy;
+        public GameObject Sad;
+        public GameObject Nutral;
+        public GameObject Angry;
     }
 
     //public List<Characters> characters = new List<Characters>();
@@ -40,81 +40,84 @@ public class FirstSprite : MonoBehaviour
     void Update()
     {
 
-
-        if (text != null)
-        {
-
-            for (int i = 0; i < charactersSprites.Length; i++)
-            {
-
-                if (dialogue.speakerNameHold == charactersSprites[i].characterName)
-                {
-                    if (text.index == i)
-                    {
-                        switch (text.text[i].emotion)
-                        {
-                            case TextSystem.Text.Emotion.Happy:
-                                {
-
-                                    charactersSprites[i].Happy.enabled = true;
-                                    // charactersSprites[i].Nutral.enabled = false;
-                                    // charactersSprites[i].Angry.enabled = false;
-                                    charactersSprites[i].Sad.enabled = false;
-
-                                    break;
-                                }
-                            case TextSystem.Text.Emotion.Sad:
-                                {
-                                    charactersSprites[i].Sad.enabled = true;
-                                    //  charactersSprites[i].Nutral.enabled = false;
-                                    //  charactersSprites[i].Angry.enabled = false;
-
-                                    charactersSprites[i].Happy.enabled = false;
-                                    break;
-                                }
-                            case TextSystem.Text.Emotion.Angry:
-                                {
-
-                                    charactersSprites[i].Nutral.enabled = false;
-                                    charactersSprites[i].Angry.enabled = false;
-                                    charactersSprites[i].Sad.enabled = false;
-                                    charactersSprites[i].Happy.enabled = false;
-                                    break;
-                                }
-                            case TextSystem.Text.Emotion.Nutrual:
-                                {
-                                    charactersSprites[i].Nutral.enabled = true;
-
-                                    charactersSprites[i].Angry.enabled = false;
-                                    charactersSprites[i].Sad.enabled = false;
-                                    charactersSprites[i].Happy.enabled = false;
-                                    break;
-                                }
-                            default:
-                                {
-                                    break;
-                                }
-
-                        }
-                    }
-                    // charactersSprites[i].Character.enabled = true;
-                }
-                else if (dialogue.speakerNameHold != charactersSprites[i].characterName)
-                {
-                    //charactersSprites[i].Character.enabled = false;
-                      //charactersSprites[i].Nutral.enabled = false;
-                      // charactersSprites[i].Angry.enabled = false;
-                    charactersSprites[i].Sad.enabled = false;
-                    charactersSprites[i].Happy.enabled = false;
-                }
-            }
-
-        }
-
     }
 
-    void checkIfNull()
+    public void checkIfNull()
     {
+		if (text != null)
+		{
 
-    }
+			for (int i = 0; i < charactersSprites.Length; i++)
+			{
+
+				if (dialogue.speakerNameHold == charactersSprites[i].characterName)
+				{
+					switch (text.text[text.index].emotion)
+					{
+						case TextSystem.Text.Emotion.Happy:
+							{
+								nullCheck(i);
+								charactersSprites[i].Happy.SetActive(true);
+								break;
+							}
+						case TextSystem.Text.Emotion.Sad:
+							{
+								nullCheck(i);
+								charactersSprites[i].Sad.SetActive(true);
+								break;
+							}
+						case TextSystem.Text.Emotion.Angry:
+							{
+								nullCheck(i);
+								charactersSprites[i].Angry.SetActive(true);
+								break;
+							}
+						case TextSystem.Text.Emotion.Nutrual:
+							{
+								nullCheck(i);
+								charactersSprites[i].Nutral.SetActive(true);
+								break;
+							}
+						default:
+							{
+								break;
+							}
+					}
+
+				}
+				else if (dialogue.speakerNameHold != charactersSprites[i].characterName)
+				{
+					nullCheck(i);
+				}
+			}
+
+		}
+
+		
+	}
+
+	void nullCheck(int i)
+	{
+		if (charactersSprites[i].Sad != null)
+		{
+			charactersSprites[i].Sad.SetActive(false);
+		}
+
+		if (charactersSprites[i].Happy != null)
+		{
+			charactersSprites[i].Happy.SetActive(false);
+		}
+
+		if (charactersSprites[i].Angry != null)
+		{
+			charactersSprites[i].Angry.SetActive(false);
+		}
+
+		if (charactersSprites[i].Nutral != null)
+		{
+			charactersSprites[i].Nutral.SetActive(false);
+		}
+	}
+
+
 }

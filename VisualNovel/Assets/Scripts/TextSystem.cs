@@ -9,6 +9,7 @@ public class TextSystem : MonoBehaviour
     public static TextSystem instance;
     SpeechText speechText;
     DialogueSystem dialogue;
+	FirstSprite sprite;
 
     float waitTime = 0.0f;
 
@@ -53,18 +54,20 @@ public class TextSystem : MonoBehaviour
         dialogue = DialogueSystem.instance;
         speechText = GetComponent<SpeechText>();
         dialogue.waitfor = textSpeed;
+		sprite = GetComponent<FirstSprite>();
         //blink = GetComponent<AudioSource>();
     }
 
 
- 
-    [System.Serializable]
-    public struct Text
+
+	
+	[System.Serializable]
+	public struct Text
         {
     
         public string CharacterName;
 
-        public Emotion emotion;
+       
         [System.Serializable]
         public enum Emotion
         {
@@ -74,7 +77,9 @@ public class TextSystem : MonoBehaviour
             Angry
         };
 
-        [Space(10)]
+		public Emotion emotion;
+
+		[Space(10)]
         [TextArea(10, 20)]
         public string text;
     
@@ -82,7 +87,8 @@ public class TextSystem : MonoBehaviour
    
         }
 
-    public Text[] text;
+	[Header("Name Text Settings")]
+	public Text[] text;
 
 
    [HideInInspector] public int index = 0;
@@ -108,6 +114,7 @@ public class TextSystem : MonoBehaviour
                     textSound.Play();
 
                     Say(text[index].text);
+					sprite.checkIfNull();
                     //index++;
                 }
 
@@ -123,7 +130,6 @@ public class TextSystem : MonoBehaviour
 
 
         // ShowArrayProperty(speakerText);
-        Debug.Log(text[index].emotion);
     }
 
 
@@ -184,9 +190,15 @@ public class TextSystem : MonoBehaviour
         if (GameStart == true)
         {
             Say(text[index].text);
-            GameStart = false;
+			sprite.checkIfNull();
+			GameStart = false;
         }
     }
+
+	void checkEmotion()
+	{
+
+	}
 
 }
 
