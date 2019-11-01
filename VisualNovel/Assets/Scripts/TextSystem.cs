@@ -9,65 +9,35 @@ public class TextSystem : MonoBehaviour
     public static TextSystem instance;
     SpeechText speechText;
     DialogueSystem dialogue;
-	FirstSprite sprite;
 
-    float waitTime = 0.0f;
-
+  
     [Header("Text Settings")]
-
     public Font font;
     [Range(0.2f, 1f)] public float WaitBeforeSkip;
-    [Range(1f, 20f)] public int textSize;
+    [Range(1f, 30f)] public int textSize;
     [Range(1f, 10f)] public float lineSpacing;
-    [Range(0f, 1f)] public float textSpeed;
-
+    [Range(0.01f, 1f)] public float textSpeed;
     public AudioSource textSound;
-
     public Color textColour;
-    
+
 
     [Header("Name Text Settings")]
     public Font nameFont;
     [Range(1f, 30f)] public int nameTextSize;
     public Color nameTextColour;
 
-	[Header("Character One")]
+	[Header("Scene Management")]
+	[Space(10)]
+	public bool GoToNextScene;
+	public bool UseName;
+	public string sceneName;
+	public int sceneNumber;
 
-
-	[HideInInspector] public bool userInput = false;
-
-    bool GameStart = true;
-
-	
-
-
-
-
-    // Start is called before the first frame update
-
-    void Awake()
-    {
-        instance = this;
-    }
-    void Start()
-    {
-        dialogue = DialogueSystem.instance;
-        speechText = GetComponent<SpeechText>();
-        dialogue.waitfor = textSpeed;
-		sprite = GetComponent<FirstSprite>();
-        //blink = GetComponent<AudioSource>();
-    }
-
-
-
-	
 	[System.Serializable]
 	public struct Text
         {
-    
         public string CharacterName;
-
-       
+		public string BackgroundName;
         [System.Serializable]
         public enum Emotion
         {
@@ -76,30 +46,68 @@ public class TextSystem : MonoBehaviour
             Nutrual,
             Angry
         };
-
 		public Emotion emotion;
-
 		[Space(10)]
         [TextArea(10, 20)]
         public string text;
-    
-
-   
         }
 
-	[Header("Name Text Settings")]
+	//[Header("Script Settings")]
+	[Space(10)]
 	public Text[] text;
 
 
-   [HideInInspector] public int index = 0;
-    // Update is called once per frame
-    void Update()
+	[System.Serializable]
+	public struct Characters
+	{
+		public string characterName;
+		public GameObject Happy;
+		public GameObject Sad;
+		public GameObject Nutral;
+		public GameObject Angry;
+	}
+	//[Header("Characters")]
+	[Space(10)]
+	public Characters[] characters;
+
+	[System.Serializable]
+	public struct BackgroundImage
+	{
+		public string backgroundName;
+		public GameObject backgroundImage;
+		//public int textLineNumber;
+	}
+	//[Header("Background")]
+	[Space(10)]
+	public BackgroundImage[] background;
+
+	bool GameStart = true;
+	float waitTime = 0.0f;
+	[HideInInspector] public string backgroundName;
+	[HideInInspector] public int index = 0;
+	[HideInInspector] public bool userInput = false;
+
+	void Awake()
+	{
+		instance = this;
+	}
+
+	void Start()
+	{
+		dialogue = DialogueSystem.instance;
+		speechText = GetComponent<SpeechText>();
+		dialogue.waitfor = textSpeed;
+	}
+
+	void Update()
     {
-        gameStart();
+		
+		gameStart();
+		
 
         if (dialogue != null)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && userInput == false)
+            if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0))) && userInput == false)
             {
 
                 if (!dialogue.isSpeaking || dialogue.isWatingForUserInput)
@@ -107,15 +115,18 @@ public class TextSystem : MonoBehaviour
                     if (index >= text.Length)
                     {
                         Debug.Log("Text,Done");
-
+						LoadScene(sceneName,sceneNumber);
                         return;
                     }
                    
                     textSound.Play();
 
                     Say(text[index].text);
-					sprite.checkIfNull();
-                    //index++;
+				
+					checkIfNull();
+					getBackGroundName();
+					checkBackground();
+
                 }
 
             }
@@ -125,11 +136,7 @@ public class TextSystem : MonoBehaviour
                 stopSay(text[index].text);
             }
         }
-
         Delay();
-
-
-        // ShowArrayProperty(speakerText);
     }
 
 
@@ -151,7 +158,7 @@ public class TextSystem : MonoBehaviour
 
     void SkipText(string speech, string speaker)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !dialogue.isWatingForUserInput)
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0))) && !dialogue.isWatingForUserInput)
         {
             if (userInput == true)
             {
@@ -189,17 +196,135 @@ public class TextSystem : MonoBehaviour
     {
         if (GameStart == true)
         {
-            Say(text[index].text);
-			sprite.checkIfNull();
+			getBackGroundName();
+			Say(text[index].text);
+			checkIfNull();
+			checkBackground();
 			GameStart = false;
         }
     }
 
-	void checkEmotion()
+	string getBackGroundName()
 	{
+
+	    backgroundName = text[index].BackgroundName;
+		return backgroundName;
+	}
+
+	void checkIfNull()
+	{
+		if (text != null)
+		{
+
+			for (int i = 0; i < characters.Length; i++)
+			{
+
+				if (dialogue.speakerNameHold == characters[i].characterName)
+				{
+					switch (text[index].emotion)
+					{
+						case Text.Emotion.Happy:
+							{
+								nullCheck(i);
+								characters[i].Happy.SetActive(true);
+								break;
+							}
+						case Text.Emotion.Sad:
+							{
+								nullCheck(i);
+								characters[i].Sad.SetActive(true);
+								break;
+							}
+						case Text.Emotion.Angry:
+							{
+								nullCheck(i);
+								characters[i].Angry.SetActive(true);
+								break;
+							}
+						case Text.Emotion.Nutrual:
+							{
+								nullCheck(i);
+								characters[i].Nutral.SetActive(true);
+								break;
+							}
+						default:
+							{
+								break;
+							}
+					}
+
+				}
+				else if (dialogue.speakerNameHold != characters[i].characterName)
+				{
+					nullCheck(i);
+				}
+			}
+
+		}
+
 
 	}
 
+	void nullCheck(int i)
+	{
+		if (characters[i].Sad != null)
+		{
+			characters[i].Sad.SetActive(false);
+		}
+
+		if (characters[i].Happy != null)
+		{
+			characters[i].Happy.SetActive(false);
+		}
+
+		if (characters[i].Angry != null)
+		{
+			characters[i].Angry.SetActive(false);
+		}
+
+		if (characters[i].Nutral != null)
+		{
+			characters[i].Nutral.SetActive(false);
+		}
+	}
+
+	void checkBackground()
+	{
+		if (text != null)
+		{
+			for (int i = 0; i < background.Length; i++)
+			{
+				if (background[i].backgroundImage != null)
+				{
+
+
+					if (backgroundName == background[i].backgroundName)
+					{
+						background[i].backgroundImage.SetActive(true);
+					}
+					else if (backgroundName != background[i].backgroundName)
+					{
+						background[i].backgroundImage.SetActive(false);
+					}
+				}
+			}
+		}
+	}
+
+	void LoadScene(string scenename, int sceneNumber)
+	{
+		if (GoToNextScene == true)
+		{
+			if (UseName == true)
+			{
+				SceneManager.LoadScene(scenename);
+			}
+			else if (UseName == false)
+			{
+				SceneManager.LoadScene(sceneNumber);
+			}
+		}
+	}
 }
 
 
