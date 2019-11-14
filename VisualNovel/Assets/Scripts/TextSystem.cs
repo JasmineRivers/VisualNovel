@@ -13,25 +13,31 @@ public class TextSystem : MonoBehaviour
   
     [Header("Text Settings")]
     public Font font;
+    [Tooltip("The time before the user can skip the text.")]
     [Range(0.2f, 1f)] public float WaitBeforeSkip;
+    [Tooltip("The size the speaker text will appear.")]
     [Range(1f, 30f)] public int textSize;
+    [Tooltip("How far apart the lines will appear from each other.")]
     [Range(1f, 10f)] public float lineSpacing;
+    [Tooltip("How far fast the text will appear.")]
     [Range(0.01f, 1f)] public float textSpeed;
+    [Tooltip("The sound for when a button is hit.")]
     public AudioSource textSound;
     public Color textColour;
 
 
     [Header("Name Text Settings")]
     public Font nameFont;
+    [Tooltip("The size of the speakers name")]
     [Range(1f, 30f)] public int nameTextSize;
     public Color nameTextColour;
 
 	[Header("Scene Management")]
 	[Space(10)]
-	public bool GoToNextScene;
-	public bool UseName;
-	public string sceneName;
-	public int sceneNumber;
+    [Tooltip("If checked at the end of all the text take user to next scene")]
+    public bool GoToNextScene;
+    [Tooltip("Which scene to go to")]
+    public int sceneNumber;
 
 	[System.Serializable]
 	public struct Text
@@ -115,7 +121,7 @@ public class TextSystem : MonoBehaviour
                     if (index >= text.Length)
                     {
                         Debug.Log("Text,Done");
-						LoadScene(sceneName,sceneNumber);
+						LoadScene(sceneNumber);
                         return;
                     }
                    
@@ -139,7 +145,7 @@ public class TextSystem : MonoBehaviour
         Delay();
     }
 
-
+    //Gets the Index for which line should be said
     void Say(string s)
     {
         string[] parts = s.Split(':');
@@ -147,7 +153,7 @@ public class TextSystem : MonoBehaviour
         string speaker = (parts.Length >= 2) ? parts[1] : "";
         dialogue.Say(speech, speaker);
     }
-
+    //Gets the Index for which line should be said and skips it to so its all written out
     void stopSay(string s)
     {
         string[] parts = s.Split(':');
@@ -156,6 +162,7 @@ public class TextSystem : MonoBehaviour
         SkipText(speech, speaker);
     }
 
+//If the user wants to skip the text it checks for either mouse or space bar input and the writes out the rest of the passage.
     void SkipText(string speech, string speaker)
     {
         if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0))) && !dialogue.isWatingForUserInput)
@@ -172,6 +179,7 @@ public class TextSystem : MonoBehaviour
         }
     }
 
+    //This delay makes it so that if space or mouse is clicked it does not skip multiple diolouges 
     void Delay()
     {
         if (dialogue.isWatingForUserInput == false)
@@ -192,6 +200,7 @@ public class TextSystem : MonoBehaviour
         }
     }
 
+    //Just checks when the game starts
     void gameStart()
     {
         if (GameStart == true)
@@ -204,6 +213,7 @@ public class TextSystem : MonoBehaviour
         }
     }
 
+    //gets the user imput for the back ground names
 	string getBackGroundName()
 	{
 
@@ -211,7 +221,8 @@ public class TextSystem : MonoBehaviour
 		return backgroundName;
 	}
 
-	void checkIfNull()
+    //Goes through the game object list and checks if they are null or not and if they are null just ignore them.This also activates the image if the drop down is set to that emotions.
+    void checkIfNull()
 	{
 		if (text != null)
 		{
@@ -264,8 +275,9 @@ public class TextSystem : MonoBehaviour
 
 
 	}
+    //Goes through the game object list and checks if they are null or not and if they are null just ignore them. This also makes images inactive if the text is not that emotion.
 
-	void nullCheck(int i)
+    void nullCheck(int i)
 	{
 		if (characters[i].Sad != null)
 		{
@@ -288,6 +300,7 @@ public class TextSystem : MonoBehaviour
 		}
 	}
 
+  //This checks if the background image is null and if it is the intended background image to use or not.
 	void checkBackground()
 	{
 		if (text != null)
@@ -311,19 +324,14 @@ public class TextSystem : MonoBehaviour
 		}
 	}
 
-	void LoadScene(string scenename, int sceneNumber)
+    //this checks if the user wants to load the scene or not then goes to that scene
+	void LoadScene(int sceneNumber)
 	{
-		if (GoToNextScene == true)
-		{
-			if (UseName == true)
-			{
-				SceneManager.LoadScene(scenename);
-			}
-			else if (UseName == false)
-			{
-				SceneManager.LoadScene(sceneNumber);
-			}
-		}
+        if (GoToNextScene == true)
+        {
+            SceneManager.LoadScene(sceneNumber);
+        }
+			
 	}
 }
 

@@ -36,7 +36,7 @@ public class DialogueSystem : MonoBehaviour
     {
         Catch();
     }
-
+    //starts the coroutine to write the text.
     public void Say(string speech, string speaker = "")
     {
         StopSpeaking();
@@ -49,7 +49,7 @@ public class DialogueSystem : MonoBehaviour
 
     Coroutine speaking = null;
 
-
+    //checks if the coroutine is still wrting out the text or not
     public void StopSpeaking()
     {
         if (isSpeaking)
@@ -60,6 +60,7 @@ public class DialogueSystem : MonoBehaviour
         speaking = null;     
     }
 
+    //This get the text pannel and writes the text to it 
     IEnumerator Speaking(string targetSpeech)
     {
         speechPanel.SetActive(true);
@@ -82,6 +83,7 @@ public class DialogueSystem : MonoBehaviour
         StopSpeaking();    
     }
 
+    //checks if the text is currently being written out then if it isnt will write out all the text at once
     public void SkipTextScroll(string targetSpeech, string speaker = "")
     {
         if (speaking != null)
@@ -92,6 +94,7 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+    //Determins who is speaking
     string DetermineSpeaker()
     {
        speakerNameHold = textSystem.text[textSystem.index].CharacterName;
@@ -99,7 +102,7 @@ public class DialogueSystem : MonoBehaviour
         return speakerNameHold;
     }
 
-
+    //make sure the text does not skip it self.
     void Catch()
     {
         if (isWatingForUserInput == true)
@@ -108,6 +111,7 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+    //gets the text object elements
     [System.Serializable]
     public class ELEMENTS
     {
